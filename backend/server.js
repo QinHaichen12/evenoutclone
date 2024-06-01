@@ -89,8 +89,10 @@ const threadId = generateID();
         id: threadId,
         title: thread,
         userId,
-        replies: [],
-        likes: [],
+        upvotes: 0,
+        downvotes: 0,
+        upvotedBy: [],
+        downvotedBy: [],
     });
 
     //👇🏻 Returns a response containing the posts
@@ -104,4 +106,48 @@ app.get("/api/all/threads", (req, res) => {
   res.json({
       threads: threadList,
   });
+});
+
+app.post("/api/thread/vote", (req, res) => {
+  const { threadId, userId, action } = req.body; // action can be 'upvote' or 'downvote'
+  const thread = threadList.find((thread) => thread.id === threadId);
+  if (thread) {
+    if (action === 'upvote') {
+      if (thread.upvotedBy.includes(userId)) {
+        return res.status(400).json({ error_message: "User has already upvoted this thread." });
+      }
+      thread.upvotes += 1;
+      thread.upvotedBy.push(userId);
+      thread.downvotes -= thread.downvotedBy.includes(userId) ? 1 : 0;
+      thread.downvotedBy = thread.downvotedBy.filter((id) => id !== userId);
+       // Remove from downvotedBy if exists
+    } else if (action === 'downvote') {
+      if (thread.downvotedBy.includes(userId)) {
+        return res.status(400).json({ error_message: "User has already downvoted this thread." });
+      }
+      thread.downvotes += 1;
+      thread.downvotedBy.push(userId);
+      thread.upvotes -= thread.upvotedBy.includes(userId) ? 1 : 0; 
+      thread.upvotedBy = thread.upvotedBy.filter((id) => id !== userId);
+      // Remove from upvotedBy if exists
+    } else {
+      return res.status(400).json({ error_message: "Invalid action." });
+    }
+    res.json({ message: "Vote registered successfully!", upvotes: thread.upvotes, downvotes: thread.downvotes });
+  } else {
+    res.status(404).json({ message: "Thread not found." });
+  }
+});
+
+app.post("/api/thread/votes", (req, res) => {
+  const { id } = req.body;
+  const thread = threadList.find((thread) => thread.id === id);
+  if (thread) {
+    res.json({
+      upvotes: thread.upvotes,
+      downvotes: thread.downvotes,
+    });
+  } else {
+    res.status(404).json({ message: "Thread not found." });
+  }
 });

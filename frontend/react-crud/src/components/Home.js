@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Nav from "./Nav";
 import { useNavigate } from "react-router-dom";
+import Votes from "./Votes";
 
 const Home = () => {
     const [thread, setThread] = useState("");
@@ -69,6 +70,11 @@ const Home = () => {
                 {threadList.map((thread) => (
                     <div className='thread__item' key={thread.id}>
                         <p>{thread.title}</p>
+                        <Votes 
+                          threadId = {thread.id}
+                          upvotes={thread.upvotes}
+                          downvotes={thread.downvotes}
+                        />
                         <div className='react__container'>
                             <p>filler</p>
                         </div>
