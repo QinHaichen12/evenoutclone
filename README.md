@@ -64,7 +64,7 @@ This project is built with a React frontend and an Express backend. Users can cr
 2. **Start the frontend server:**
 
    ```sh
-   cd ../frontend
+   cd ../frontend/react-crud
    npm start
    ```
 
