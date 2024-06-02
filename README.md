@@ -1,3 +1,4 @@
+
 # Evenout
 
 ## Overview
@@ -31,23 +32,43 @@ This project is built with a React frontend and an Express backend. Users can cr
 1. **Clone the repository:**
 
    ```sh
-   git clone https://github.com/lilyium/EvenOut
+   git clone https://github.com/your-username/thread-voting-system.git
+   cd thread-voting-system
    ```
 
-2. **Install dependencies:**
+2. **Install backend dependencies:**
 
    ```sh
+   cd backend
+   npm install
+   ```
+
+3. **Install frontend dependencies:**
+
+   ```sh
+   cd ../frontend
    npm install
    ```
 
 ### Running the Application
 
+1. **Start the backend server:**
+
    ```sh
+   cd backend
+   npm start
+   ```
+
+   The backend server will run on `http://localhost:8080`.
+
+2. **Start the frontend server:**
+
+   ```sh
+   cd ../frontend/react-crud
    npm start
    ```
 
    The frontend application will run on `http://localhost:3000`.
-   The backend server will run on `http://localhost:8080`.
 
 ### Usage
 
@@ -60,20 +81,23 @@ This project is built with a React frontend and an Express backend. Users can cr
 ## Project Structure
 
 ```
-evenout/
-├── client/
-│   ├── public
-│   ├── src
+thread-voting-system/
+├── backend/
+│   ├── server.js
 │   ├── package.json
-│   └── package-lock.json
-├── server/
-│   ├── app
-│   ├── package.json
-│   ├── package-lock.json
-│   └── server.js
-├── package.json
-├── package-lock.json
-└── README.md
+│   └── ...
+└── frontend/
+    ├── src/
+    │   ├── components/
+    │   │   ├── Home.js
+    │   │   ├── Nav.js
+    │   │   └── Votes.js
+    │   ├── App.js
+    │   ├── index.js
+    │   └── ...
+    ├── public/
+    ├── package.json
+    └── ...
 ```
 
 ## API Endpoints

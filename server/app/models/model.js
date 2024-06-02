@@ -10,6 +10,6 @@
 //         type: Sequelize.BOOLEAN
 //       }
 //     });
-  
+
 //     return Tutorial;
 //   };
