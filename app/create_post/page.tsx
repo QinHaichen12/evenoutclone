@@ -51,13 +51,13 @@ export default function CreatePredictionPage() {
               choices,
               expires_at: expiresAt ? new Date(expiresAt).toISOString() : null,
               isOpen,
-              //user_id: user.id,
+              created_by: user.id,
             },
           ]);
         console.log("Error: " + error?.message);
         if (error) throw error;
   
-        //router.push('/');
+        router.push('/forum');
       } catch (error) {
         if (error instanceof Error) {
           setError(error.message);

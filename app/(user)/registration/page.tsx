@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { signup } from "../login/actions"
 
 export default function RegisterPage() {
   const [email, setEmail] = useState("");
@@ -15,30 +16,14 @@ export default function RegisterPage() {
     event.preventDefault();
     setError(null);
 
-    if (password !== confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
-
     try {
-      // Replace this with your actual registration logic
-      const response = await fetch("/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const formData = new FormData();
+      formData.append('email', email);
+      formData.append('password', password);
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Registration failed");
-      }
-
-      const data = await response.json();
-
-      // Redirect to home page or other page after successful registration
-      router.push("/");
+      // Use the login function from actions.ts
+      await signup(formData);
+      console.log("redirecting to home")
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);

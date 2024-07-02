@@ -1,13 +1,11 @@
-"use server";
-
 import { NextApiRequest, NextApiResponse } from 'next';
-import { createClient } from '@/utils/supabase/server'; 
+import { createClient } from '@supabase/supabase-js';
 
-
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const supabase = createClient();
-    console.log("handled");
   if (req.method === 'POST') {
     const { email, password } = req.body;
 
@@ -16,17 +14,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(400).json({ message: 'Email and password are required' });
     }
 
-    // Authenticate the user with Supabase
-    const { data, error } = await supabase.auth.signInWithPassword({
+    // Register the user with Supabase
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
     });
 
     if (error) {
-      return res.status(401).json({ message: error.message });
+      return res.status(400).json({ message: error.message });
     }
 
-    // If authentication is successful, return the user data
+    // If registration is successful, return the user data
     return res.status(200).json(data);
   } else {
     res.setHeader('Allow', ['POST']);
