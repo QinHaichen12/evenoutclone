@@ -1,113 +1,246 @@
+"use client";
+import { JSX, SVGProps, useState } from "react";
+import { Dialog } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import {
+  AcademicCapIcon,
+  CheckCircleIcon,
+  HandRaisedIcon,
+  RocketLaunchIcon,
+  SparklesIcon,
+  SunIcon,
+  UserGroupIcon,
+} from "@heroicons/react/20/solid";
 import Image from "next/image";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
 
-export default function Home() {
+const stats = [
+  { label: "Business was founded", value: "2012" },
+  { label: "People on the team", value: "120+" },
+  { label: "Users on the platform", value: "250k" },
+  { label: "Paid out to creators", value: "$70M" },
+];
+const values = [
+  {
+    name: "Encourage Free Speech",
+    description:
+      "We believe in open discussion and freedom of speech within respectful boundaries.",
+    icon: HandRaisedIcon,
+  },
+  {
+    name: "Foster Community",
+    description:
+      "Our goal is to build a supportive and engaged community where everyone feels welcome.",
+    icon: UserGroupIcon,
+  },
+  {
+    name: "Promote Learning",
+    description:
+      "We aim to be a platform for knowledge sharing and collective learning.",
+    icon: AcademicCapIcon,
+  },
+  {
+    name: "Respect Diversity",
+    description:
+      "We value diverse perspectives and promote inclusivity in all our discussions.",
+    icon: SparklesIcon,
+  },
+];
+const benefits = [
+  "Connect with like-minded individuals",
+  "Share and gain knowledge",
+  "Participate in engaging discussions",
+  "Access exclusive content",
+  "Receive community support",
+  "Enjoy a safe and respectful environment",
+];
+
+export default function Example() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="bg-gray-900">
+      <Header />
+
+      <main className="relative isolate">
+        {/* Background */}
+        <div
+          className="absolute inset-x-0 top-4 -z-10 flex transform-gpu justify-center overflow-hidden blur-3xl"
+          aria-hidden="true"
+        >
+          <div
+            className="aspect-[1108/632] w-[69.25rem] flex-none bg-gradient-to-r from-[#80caff] to-[#4f46e5] opacity-25"
+            style={{
+              clipPath:
+                "polygon(73.6% 51.7%, 91.7% 11.8%, 100% 46.4%, 97.4% 82.2%, 92.5% 84.9%, 75.7% 64%, 55.3% 47.5%, 46.5% 49.4%, 45% 62.9%, 50.3% 87.2%, 21.3% 64.1%, 0.1% 100%, 5.4% 51.1%, 21.4% 63.9%, 58.9% 0.2%, 73.6% 51.7%)",
+            }}
+          />
         </div>
-      </div>
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+        {/* Header section */}
+        <div className="px-6 pt-14 lg:px-8">
+          <div className="mx-auto max-w-2xl pt-24 text-center sm:pt-40">
+            <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+              Welcome to the Forum
+            </h2>
+            <p className="mt-6 text-lg leading-8 text-gray-300">
+              Join our community to engage in meaningful discussions, share
+              knowledge, and connect with like-minded individuals.
+            </p>
+          </div>
+        </div>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+        {/* Content section */}
+        <div className="mx-auto mt-20 max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
+            <div className="grid max-w-xl grid-cols-1 gap-8 text-base leading-7 text-gray-300 lg:max-w-none lg:grid-cols-2">
+              <div>
+                <p>
+                  Our forum provides a platform for people from all walks of
+                  life to come together and discuss a wide range of topics.
+                  Whether you are looking to share your expertise, learn from
+                  others, or simply engage in stimulating conversations, you
+                  will find a welcoming and supportive community here.
+                </p>
+                <p className="mt-8">
+                  We value respectful dialogue and diverse perspectives. Our
+                  moderators are here to ensure that the forum remains a safe
+                  and inclusive space for everyone. Join us and be a part of
+                  something special.
+                </p>
+              </div>
+              <div>
+                <p>
+                  From technology and science to arts and culture, our
+                  categories cover a vast array of subjects. Dive into
+                  discussions that pique your interest, ask questions, and get
+                  insights from community members who are passionate about the
+                  same topics as you.
+                </p>
+                <p className="mt-8">
+                  We also host regular events, such as Q&A sessions with
+                  experts, community challenges, and more. Stay tuned and
+                  participate to make the most of your forum experience.
+                </p>
+              </div>
+            </div>
+            <dl className="mt-16 grid grid-cols-1 gap-x-8 gap-y-12 sm:mt-20 sm:grid-cols-2 sm:gap-y-16 lg:mt-28 lg:grid-cols-4">
+              {stats.map((stat, statIdx) => (
+                <div
+                  key={statIdx}
+                  className="flex flex-col-reverse gap-y-3 border-l border-white/20 pl-6"
+                >
+                  <dt className="text-base leading-7 text-gray-300">
+                    {stat.label}
+                  </dt>
+                  <dd className="text-3xl font-semibold tracking-tight text-white">
+                    {stat.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+        {/* Image section */}
+        <div className="relative aspect-[9/4] w-full xl:rounded-3xl overflow-hidden">
+          <Image
+            src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2894&q=80"
+            alt=""
+            fill
+            style={{ objectFit: "cover" }}
+          />
+        </div>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+        {/* Values section */}
+        <div className="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:mx-0">
+            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              Our values
+            </h2>
+            <p className="mt-6 text-lg leading-8 text-gray-300">
+              We believe in creating a community where everyone feels valued and
+              respected. Here are the core values that guide us:
+            </p>
+          </div>
+          <dl className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 text-base leading-7 text-gray-300 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:gap-x-16">
+            {values.map((value) => (
+              <div key={value.name} className="relative pl-9">
+                <dt className="inline font-semibold text-white">
+                  <value.icon
+                    className="absolute left-1 top-1 h-5 w-5 text-indigo-500"
+                    aria-hidden="true"
+                  />
+                  {value.name}
+                </dt>{" "}
+                <dd className="inline">{value.description}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+        {/* CTA section */}
+        <div className="relative isolate -z-10 mt-32 sm:mt-40">
+          <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div className="mx-auto flex max-w-2xl flex-col gap-16 bg-white/5 px-6 py-16 ring-1 ring-white/10 sm:rounded-3xl sm:p-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-center lg:py-20 xl:gap-x-20 xl:px-20">
+              <div className="relative h-96 w-full flex-none rounded-2xl overflow-hidden shadow-xl lg:aspect-square lg:h-auto lg:max-w-sm">
+                <Image
+                  src="https://images.unsplash.com/photo-1519338381761-c7523edc1f46?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
+                  alt=""
+                  fill
+                  style={{ objectFit: "cover" }}
+                  className="rounded-2xl"
+                />
+              </div>
+              <div className="w-full flex-auto">
+                <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                  Join our team
+                </h2>
+                <p className="mt-6 text-lg leading-8 text-gray-300">
+                  Passionate about building communities? We are always looking
+                  for dedicated individuals to join our team. Explore our job
+                  openings and apply today.
+                </p>
+                <ul
+                  role="list"
+                  className="mt-10 grid grid-cols-1 gap-x-8 gap-y-3 text-base leading-7 text-white sm:grid-cols-2"
+                >
+                  {benefits.map((benefit) => (
+                    <li key={benefit} className="flex gap-x-3">
+                      <CheckCircleIcon
+                        className="h-7 w-5 flex-none"
+                        aria-hidden="true"
+                      />
+                      {benefit}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-10 flex">
+                  <a
+                    href="#"
+                    className="text-sm font-semibold leading-6 text-indigo-400"
+                  >
+                    See our job postings <span aria-hidden="true">&rarr;</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="absolute inset-x-0 -top-16 -z-10 flex transform-gpu justify-center overflow-hidden blur-3xl"
+            aria-hidden="true"
+          >
+            <div
+              className="aspect-[1318/752] w-[82.375rem] flex-none bg-gradient-to-r from-[#80caff] to-[#4f46e5] opacity-25"
+              style={{
+                clipPath:
+                  "polygon(73.6% 51.7%, 91.7% 11.8%, 100% 46.4%, 97.4% 82.2%, 92.5% 84.9%, 75.7% 64%, 55.3% 47.5%, 46.5% 49.4%, 45% 62.9%, 50.3% 87.2%, 21.3% 64.1%, 0.1% 100%, 5.4% 51.1%, 21.4% 63.9%, 58.9% 0.2%, 73.6% 51.7%)",
+              }}
+            />
+          </div>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
   );
 }
