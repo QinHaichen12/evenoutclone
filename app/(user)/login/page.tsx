@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { login } from './actions'
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -14,24 +15,14 @@ export default function LoginPage() {
     setError(null);
 
     try {
-      // Replace this with your actual login logic
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const formData = new FormData();
+      formData.append('email', email);
+      formData.append('password', password);
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Login failed");
-      }
-
-      const data = await response.json();
-
+      // Use the login function from actions.ts
+      await login(formData);
+      console.log("redirecting to home")
       // Redirect to home page or other page after successful login
-      router.push("/");
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
@@ -40,7 +31,6 @@ export default function LoginPage() {
       }
     }
   };
-
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
