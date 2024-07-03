@@ -62,7 +62,7 @@ export default function Forum() {
       }
 
       if (predictionsData) {
-        const userPredictions = predictionsData.reduce((acc, prediction) => {
+        const userPredictions = predictionsData.reduce<{ [key: string]: string }>((acc, prediction) => {
           acc[prediction.post_id] = prediction.prediction;
           return acc;
         }, {});
